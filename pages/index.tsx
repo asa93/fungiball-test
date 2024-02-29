@@ -72,7 +72,6 @@ function Quiz() {
         answers_
       );
 
-      console.log("result2", resp);
       setResult(resp?.data?.count);
     }
   };
