@@ -28,14 +28,19 @@ export default async function handler(
     } else {
         const quizDone = req.body;
 
+        let count = 0;
+        let success = true;
         for (let i = 0; i < quiz.length; i++) {
-            if (quizDone[i].answer !== quiz[i].answer)
-                return res.status(200).json({ message: false });
+            if (quizDone[i]?.answer !== quiz[i].answer) {
+                success = false;
+
+            } else {
+                count++
+            }
+
         }
-
+        res.status(200).json({ count, success });
         // GENERATE SIGNATURE FOR VOUCHER
-
-
 
         const privateKey = process?.env?.PRIV_KEY;
 
